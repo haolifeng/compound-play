@@ -1,0 +1,1591 @@
+{
+  "contractName": "JumpRateModelV2",
+  "abi": [
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "baseRatePerYear",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "multiplierPerYear",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "jumpMultiplierPerYear",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "kink_",
+          "type": "uint256"
+        },
+        {
+          "internalType": "address",
+          "name": "owner_",
+          "type": "address"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "constructor"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "baseRatePerBlock",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "multiplierPerBlock",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "jumpMultiplierPerBlock",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "kink",
+          "type": "uint256"
+        }
+      ],
+      "name": "NewInterestParams",
+      "type": "event"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "baseRatePerBlock",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "blocksPerYear",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "cash",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "borrows",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "reserves",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "reserveFactorMantissa",
+          "type": "uint256"
+        }
+      ],
+      "name": "getSupplyRate",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "isInterestRateModel",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "jumpMultiplierPerBlock",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "kink",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "multiplierPerBlock",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "owner",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "baseRatePerYear",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "multiplierPerYear",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "jumpMultiplierPerYear",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "kink_",
+          "type": "uint256"
+        }
+      ],
+      "name": "updateJumpRateModel",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "cash",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "borrows",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "reserves",
+          "type": "uint256"
+        }
+      ],
+      "name": "utilizationRate",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "pure",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "cash",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "borrows",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "reserves",
+          "type": "uint256"
+        }
+      ],
+      "name": "getBorrowRate",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ],
+  "metadata": "{\"compiler\":{\"version\":\"0.5.16+commit.9c3226ce\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"baseRatePerYear\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"multiplierPerYear\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"jumpMultiplierPerYear\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"kink_\",\"type\":\"uint256\"},{\"internalType\":\"address\",\"name\":\"owner_\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"baseRatePerBlock\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"multiplierPerBlock\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"jumpMultiplierPerBlock\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"kink\",\"type\":\"uint256\"}],\"name\":\"NewInterestParams\",\"type\":\"event\"},{\"constant\":true,\"inputs\":[],\"name\":\"baseRatePerBlock\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"blocksPerYear\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"cash\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"borrows\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"reserves\",\"type\":\"uint256\"}],\"name\":\"getBorrowRate\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"cash\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"borrows\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"reserves\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"reserveFactorMantissa\",\"type\":\"uint256\"}],\"name\":\"getSupplyRate\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"isInterestRateModel\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"jumpMultiplierPerBlock\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"kink\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"multiplierPerBlock\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"owner\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"baseRatePerYear\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"multiplierPerYear\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"jumpMultiplierPerYear\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"kink_\",\"type\":\"uint256\"}],\"name\":\"updateJumpRateModel\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"cash\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"borrows\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"reserves\",\"type\":\"uint256\"}],\"name\":\"utilizationRate\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"pure\",\"type\":\"function\"}],\"devdoc\":{\"author\":\"Arr00\",\"methods\":{\"getBorrowRate(uint256,uint256,uint256)\":{\"params\":{\"borrows\":\"The amount of borrows in the market\",\"cash\":\"The amount of cash in the market\",\"reserves\":\"The amount of reserves in the market\"},\"return\":\"The borrow rate percentage per block as a mantissa (scaled by 1e18)\"},\"getSupplyRate(uint256,uint256,uint256,uint256)\":{\"params\":{\"borrows\":\"The amount of borrows in the market\",\"cash\":\"The amount of cash in the market\",\"reserveFactorMantissa\":\"The current reserve factor for the market\",\"reserves\":\"The amount of reserves in the market\"},\"return\":\"The supply rate percentage per block as a mantissa (scaled by 1e18)\"},\"updateJumpRateModel(uint256,uint256,uint256,uint256)\":{\"params\":{\"baseRatePerYear\":\"The approximate target base APR, as a mantissa (scaled by 1e18)\",\"jumpMultiplierPerYear\":\"The multiplierPerBlock after hitting a specified utilization point\",\"kink_\":\"The utilization point at which the jump multiplier is applied\",\"multiplierPerYear\":\"The rate of increase in interest rate wrt utilization (scaled by 1e18)\"}},\"utilizationRate(uint256,uint256,uint256)\":{\"params\":{\"borrows\":\"The amount of borrows in the market\",\"cash\":\"The amount of cash in the market\",\"reserves\":\"The amount of reserves in the market (currently unused)\"},\"return\":\"The utilization rate as a mantissa between [0, 1e18]\"}},\"title\":\"Compound's JumpRateModel Contract V2 for V2 cTokens\"},\"userdoc\":{\"methods\":{\"getBorrowRate(uint256,uint256,uint256)\":{\"notice\":\"Calculates the current borrow rate per block\"},\"getSupplyRate(uint256,uint256,uint256,uint256)\":{\"notice\":\"Calculates the current supply rate per block\"},\"updateJumpRateModel(uint256,uint256,uint256,uint256)\":{\"notice\":\"Update the parameters of the interest rate model (only callable by owner, i.e. Timelock)\"},\"utilizationRate(uint256,uint256,uint256)\":{\"notice\":\"Calculates the utilization rate of the market: `borrows / (cash + borrows - reserves)`\"}},\"notice\":\"Supports only for V2 cTokens\"}},\"settings\":{\"compilationTarget\":{\"project:/contracts/JumpRateModelV2.sol\":\"JumpRateModelV2\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"project:/contracts/BaseJumpRateModelV2.sol\":{\"keccak256\":\"0x90555554777ea72f6c63975094dd238ab66f18d2cd88a40d8fa390b2ac6c435b\",\"urls\":[\"bzz-raw://7657b7544bd8c128764007ca70aa072f2d51a3e7c6f1991dc16cc559f40ed38d\",\"dweb:/ipfs/QmZat7Cu4XZnVo19HeUbXbTVZHTikrLQdacNqFbisaeYpL\"]},\"project:/contracts/InterestRateModel.sol\":{\"keccak256\":\"0xd5b385a31d77389ef883c439c4f49ef774256fdc8b2c31fb5062c77a56f72aa9\",\"urls\":[\"bzz-raw://79c491b0ba38080eb3652d4d14b873a946376cc4dba29e529e94f51bdcc5c9ad\",\"dweb:/ipfs/Qmd7Goi763v2RuAjSoGgNqmYQWxRYVeqqyHjC82MmbtV16\"]},\"project:/contracts/JumpRateModelV2.sol\":{\"keccak256\":\"0x251f60ea84392a1ab5e728b712b13577cfdbaedd01d216a5d6b2052d54071b4a\",\"urls\":[\"bzz-raw://61d0e22d348eeaec7486b8cbbf9d299e4427508756dcd643efc3d2d2428d97ca\",\"dweb:/ipfs/QmYEuqo6BKhP1SVp9fQmDAdQtjupdyakPumbUdsPCmDKBh\"]},\"project:/contracts/SafeMath.sol\":{\"keccak256\":\"0x7d12b6819c3047137bd3131c7b76002e680b525735f05802acfa44b6f0fd3dd7\",\"urls\":[\"bzz-raw://3374e63b129ce73f041d9aa08d3ebf8cbeda828a15f127e09a5aa0779e29c4fd\",\"dweb:/ipfs/QmTQaz5NBhm3Rne9G9CGkQTTnpUAwUAoTwiZVQ36wW2eZL\"]}},\"version\":1}",
+  "bytecode": "0x608060405234801561001057600080fd5b50604051610a62380380610a62833981810160405260a081101561003357600080fd5b508051602082015160408301516060840151608090940151600080546001600160a01b0319166001600160a01b03831617905592939192909190848484848461007e8585858561008d565b505050505050505050506102bc565b6100a7622014808561017060201b6105bc1790919060201c565b6002556100f66100c562201480836101c1602090811b61056317901c565b6100e4670de0b6b3a7640000866101c160201b6105631790919060201c565b61017060201b6105bc1790919060201c565b6001556101118262201480610170602090811b6105bc17901c565b60038190556004829055600254600154604080519283526020830191909152818101929092526060810183905290517f6960ab234c7ef4b0c9197100f5393cfcde7c453ac910a27bd2000aa1dd4c068d9181900360800190a150505050565b60006101b883836040518060400160405280601a81526020017f536166654d6174683a206469766973696f6e206279207a65726f00000000000081525061021a60201b60201c565b90505b92915050565b6000826101d0575060006101bb565b828202828482816101dd57fe5b04146101b85760405162461bcd60e51b8152600401808060200182810382526021815260200180610a416021913960400191505060405180910390fd5b600081836102a65760405162461bcd60e51b81526004018080602001828103825283818151815260200191508051906020019080838360005b8381101561026b578181015183820152602001610253565b50505050905090810190601f1680156102985780820380516001836020036101000a031916815260200191505b509250505060405180910390fd5b5060008385816102b257fe5b0495945050505050565b610776806102cb6000396000f3fe608060405234801561001057600080fd5b50600436106100a95760003560e01c80638da5cb5b116100715780638da5cb5b14610167578063a385fb961461018b578063b816881614610193578063b9f9850a146101c2578063f14039de146101ca578063fd2da339146101d2576100a9565b806315f24053146100ae5780632037f3e7146100e95780632191f92a1461011a5780636e71e2d8146101365780638726bb891461015f575b600080fd5b6100d7600480360360608110156100c457600080fd5b50803590602081013590604001356101da565b60408051918252519081900360200190f35b610118600480360360808110156100ff57600080fd5b50803590602081013590604081013590606001356101f1565b005b61012261024c565b604080519115158252519081900360200190f35b6100d76004803603606081101561014c57600080fd5b5080359060208101359060400135610251565b6100d76102a7565b61016f6102ad565b604080516001600160a01b039092168252519081900360200190f35b6100d76102bc565b6100d7600480360360808110156101a957600080fd5b50803590602081013590604081013590606001356102c3565b6100d7610342565b6100d7610348565b6100d761034e565b60006101e7848484610354565b90505b9392505050565b6000546001600160a01b0316331461023a5760405162461bcd60e51b815260040180806020018281038252602681526020018061071c6026913960400191505060405180910390fd5b6102468484848461041d565b50505050565b600181565b600082610260575060006101ea565b6101e761028383610277878763ffffffff6104be16565b9063ffffffff61052116565b61029b85670de0b6b3a764000063ffffffff61056316565b9063ffffffff6105bc16565b60015481565b6000546001600160a01b031681565b6220148081565b6000806102de670de0b6b3a76400008463ffffffff61052116565b905060006102ed878787610354565b9050600061030d670de0b6b3a764000061029b848663ffffffff61056316565b9050610336670de0b6b3a764000061029b8361032a8c8c8c610251565b9063ffffffff61056316565b98975050505050505050565b60035481565b60025481565b60045481565b600080610362858585610251565b905060045481116103a8576103a0600254610394670de0b6b3a764000061029b6001548661056390919063ffffffff16565b9063ffffffff6104be16565b9150506101ea565b60006103d3600254610394670de0b6b3a764000061029b60015460045461056390919063ffffffff16565b905060006103ec6004548461052190919063ffffffff16565b905061041382610394670de0b6b3a764000061029b6003548661056390919063ffffffff16565b93505050506101ea565b610430846220148063ffffffff6105bc16565b600255610449610283622014808363ffffffff61056316565b60015561045f826220148063ffffffff6105bc16565b60038190556004829055600254600154604080519283526020830191909152818101929092526060810183905290517f6960ab234c7ef4b0c9197100f5393cfcde7c453ac910a27bd2000aa1dd4c068d9181900360800190a150505050565b600082820183811015610518576040805162461bcd60e51b815260206004820152601b60248201527f536166654d6174683a206164646974696f6e206f766572666c6f770000000000604482015290519081900360640190fd5b90505b92915050565b600061051883836040518060400160405280601f81526020017f536166654d6174683a207375627472616374696f6e20756e646572666c6f77008152506105fe565b6000826105725750600061051b565b8282028284828161057f57fe5b04146105185760405162461bcd60e51b81526004018080602001828103825260218152602001806106fb6021913960400191505060405180910390fd5b600061051883836040518060400160405280601a81526020017f536166654d6174683a206469766973696f6e206279207a65726f000000000000815250610695565b6000818484111561068d5760405162461bcd60e51b81526004018080602001828103825283818151815260200191508051906020019080838360005b8381101561065257818101518382015260200161063a565b50505050905090810190601f16801561067f5780820380516001836020036101000a031916815260200191505b509250505060405180910390fd5b505050900390565b600081836106e45760405162461bcd60e51b815260206004820181815283516024840152835190928392604490910191908501908083836000831561065257818101518382015260200161063a565b5060008385816106f057fe5b049594505050505056fe536166654d6174683a206d756c7469706c69636174696f6e206f766572666c6f776f6e6c7920746865206f776e6572206d61792063616c6c20746869732066756e6374696f6e2ea265627a7a72315820fa339f32572e568d4c9144a3b8903f560bce8e875ece51a2c4663d290d9748ac64736f6c63430005100032536166654d6174683a206d756c7469706c69636174696f6e206f766572666c6f77",
+  "deployedBytecode": "0x608060405234801561001057600080fd5b50600436106100a95760003560e01c80638da5cb5b116100715780638da5cb5b14610167578063a385fb961461018b578063b816881614610193578063b9f9850a146101c2578063f14039de146101ca578063fd2da339146101d2576100a9565b806315f24053146100ae5780632037f3e7146100e95780632191f92a1461011a5780636e71e2d8146101365780638726bb891461015f575b600080fd5b6100d7600480360360608110156100c457600080fd5b50803590602081013590604001356101da565b60408051918252519081900360200190f35b610118600480360360808110156100ff57600080fd5b50803590602081013590604081013590606001356101f1565b005b61012261024c565b604080519115158252519081900360200190f35b6100d76004803603606081101561014c57600080fd5b5080359060208101359060400135610251565b6100d76102a7565b61016f6102ad565b604080516001600160a01b039092168252519081900360200190f35b6100d76102bc565b6100d7600480360360808110156101a957600080fd5b50803590602081013590604081013590606001356102c3565b6100d7610342565b6100d7610348565b6100d761034e565b60006101e7848484610354565b90505b9392505050565b6000546001600160a01b0316331461023a5760405162461bcd60e51b815260040180806020018281038252602681526020018061071c6026913960400191505060405180910390fd5b6102468484848461041d565b50505050565b600181565b600082610260575060006101ea565b6101e761028383610277878763ffffffff6104be16565b9063ffffffff61052116565b61029b85670de0b6b3a764000063ffffffff61056316565b9063ffffffff6105bc16565b60015481565b6000546001600160a01b031681565b6220148081565b6000806102de670de0b6b3a76400008463ffffffff61052116565b905060006102ed878787610354565b9050600061030d670de0b6b3a764000061029b848663ffffffff61056316565b9050610336670de0b6b3a764000061029b8361032a8c8c8c610251565b9063ffffffff61056316565b98975050505050505050565b60035481565b60025481565b60045481565b600080610362858585610251565b905060045481116103a8576103a0600254610394670de0b6b3a764000061029b6001548661056390919063ffffffff16565b9063ffffffff6104be16565b9150506101ea565b60006103d3600254610394670de0b6b3a764000061029b60015460045461056390919063ffffffff16565b905060006103ec6004548461052190919063ffffffff16565b905061041382610394670de0b6b3a764000061029b6003548661056390919063ffffffff16565b93505050506101ea565b610430846220148063ffffffff6105bc16565b600255610449610283622014808363ffffffff61056316565b60015561045f826220148063ffffffff6105bc16565b60038190556004829055600254600154604080519283526020830191909152818101929092526060810183905290517f6960ab234c7ef4b0c9197100f5393cfcde7c453ac910a27bd2000aa1dd4c068d9181900360800190a150505050565b600082820183811015610518576040805162461bcd60e51b815260206004820152601b60248201527f536166654d6174683a206164646974696f6e206f766572666c6f770000000000604482015290519081900360640190fd5b90505b92915050565b600061051883836040518060400160405280601f81526020017f536166654d6174683a207375627472616374696f6e20756e646572666c6f77008152506105fe565b6000826105725750600061051b565b8282028284828161057f57fe5b04146105185760405162461bcd60e51b81526004018080602001828103825260218152602001806106fb6021913960400191505060405180910390fd5b600061051883836040518060400160405280601a81526020017f536166654d6174683a206469766973696f6e206279207a65726f000000000000815250610695565b6000818484111561068d5760405162461bcd60e51b81526004018080602001828103825283818151815260200191508051906020019080838360005b8381101561065257818101518382015260200161063a565b50505050905090810190601f16801561067f5780820380516001836020036101000a031916815260200191505b509250505060405180910390fd5b505050900390565b600081836106e45760405162461bcd60e51b815260206004820181815283516024840152835190928392604490910191908501908083836000831561065257818101518382015260200161063a565b5060008385816106f057fe5b049594505050505056fe536166654d6174683a206d756c7469706c69636174696f6e206f766572666c6f776f6e6c7920746865206f776e6572206d61792063616c6c20746869732066756e6374696f6e2ea265627a7a72315820fa339f32572e568d4c9144a3b8903f560bce8e875ece51a2c4663d290d9748ac64736f6c63430005100032",
+  "sourceMap": "240:805:34:-;;;822:220;8:9:-1;5:2;;;30:1;27;20:12;5:2;822:220:34;;;;;;;;;;;;;;;13:3:-1;8;5:12;2:2;;;30:1;27;20:12;2:2;-1:-1;822:220:34;;;;;;;;;;;;;;;;;;;2064:5:0;:14;;-1:-1:-1;;;;;;2064:14:0;-1:-1:-1;;;;;2064:14:0;;;;;822:220:34;;;;;;;;;;;;2091:94:0;822:220:34;;;;2091:27:0;:94::i;:::-;1930:263;;;;;822:220:34;;;;;240:805;;6002:497:0;6164:34;771:7;6164:15;:19;;;;;;:34;;;;:::i;:::-;6145:16;:53;6230:59;6264:24;771:7;6282:5;6264:17;;;;;;;:24;;:::i;:::-;6231:27;6253:4;6231:17;:21;;;;;;:27;;;;:::i;:::-;6230:33;;;;;;:59;;;;:::i;:::-;6209:18;:80;6325:40;:21;771:7;6325:25;;;;;;;:40;;:::i;:::-;6300:22;:65;;;6376:4;:12;;;6424:16;;6442:18;;6406:85;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;6002:497;;;;:::o;4398:132:42:-;4456:7;4483:39;4487:1;4490;4483:39;;;;;;;;;;;;;;;;;:3;;;:39;;:::i;:::-;4476:46;;4398:132;;;;;:::o;2740:471::-;2798:7;3043:6;3039:47;;-1:-1:-1;3073:1:42;3066:8;;3039:47;3110:5;;;3114:1;3110;:5;:1;3134:5;;;;;:10;3126:56;;;;-1:-1:-1;;;3126:56:42;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;5018:345;5104:7;5206:12;5199:5;5191:28;;;;-1:-1:-1;;;5191:28:42;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;23:1:-1;8:100;33:3;30:1;27:10;8:100;;;90:11;;;84:18;71:11;;;64:39;52:2;45:10;8:100;;;12:14;5191:28:42;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;5230:9;5246:1;5242;:5;;;;;;;5018:345;-1:-1:-1;;;;;5018:345:42:o;240:805:34:-;;;;;;;",
+  "deployedSourceMap": "240:805:34:-;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;240:805:34;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;650:164;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;-1:-1;650:164:34;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;2710:319:0;;;;;;13:3:-1;8;5:12;2:2;;;30:1;27;20:12;2:2;-1:-1;2710:319:0;;;;;;;;;;;;;;;;;:::i;:::-;;233:47:32;;;:::i;:::-;;;;;;;;;;;;;;;;;;3419:297:0;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;-1:-1;3419:297:0;;;;;;;;;;;;:::i;898:30::-;;;:::i;586:20::-;;;:::i;:::-;;;;-1:-1:-1;;;;;586:20:0;;;;;;;;;;;;;;734:44;;;:::i;5066:438::-;;;;;;13:3:-1;8;5:12;2:2;;;30:1;27;20:12;2:2;-1:-1;5066:438:0;;;;;;;;;;;;;;;;;:::i;1184:34::-;;;:::i;1046:28::-;;;:::i;1323:16::-;;;:::i;650:164:34:-;736:4;760:46;782:4;788:7;797:8;760:21;:46::i;:::-;753:53;;650:164;;;;;;:::o;2710:319:0:-;2867:5;;-1:-1:-1;;;;;2867:5:0;2853:10;:19;2845:70;;;;-1:-1:-1;;;2845:70:0;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;2928:93;2956:15;2973:17;2992:21;3015:5;2928:27;:93::i;:::-;2710:319;;;;:::o;233:47:32:-;276:4;233:47;:::o;3419:297:0:-;3505:4;3586:12;3582:53;;-1:-1:-1;3622:1:0;3615:8;;3582:53;3654:54;3676:31;3698:8;3676:17;:4;3685:7;3676:17;:8;:17;:::i;:::-;:21;:31;:21;:31;:::i;:::-;3654:17;:7;3666:4;3654:17;:11;:17;:::i;:::-;:21;:54;:21;:54;:::i;898:30::-;;;;:::o;586:20::-;;;-1:-1:-1;;;;;586:20:0;;:::o;734:44::-;771:7;734:44;:::o;5066:438::-;5178:4;;5224:37;5229:4;5239:21;5224:37;:14;:37;:::i;:::-;5195:66;;5272:15;5290:46;5312:4;5318:7;5327:8;5290:21;:46::i;:::-;5272:64;-1:-1:-1;5347:15:0;5365:47;5407:4;5365:37;5272:64;5380:21;5365:37;:14;:37;:::i;:47::-;5347:65;;5430:66;5491:4;5430:56;5475:10;5430:40;5446:4;5452:7;5461:8;5430:15;:40::i;:::-;:44;:56;:44;:56;:::i;:66::-;5423:73;5066:438;-1:-1:-1;;;;;;;;5066:438:0:o;1184:34::-;;;;:::o;1046:28::-;;;;:::o;1323:16::-;;;;:::o;4104:539::-;4198:4;4215:9;4227:40;4243:4;4249:7;4258:8;4227:15;:40::i;:::-;4215:52;;4292:4;;4284;:12;4280:356;;4320:60;4363:16;;4320:38;4353:4;4320:28;4329:18;;4320:4;:8;;:28;;;;:::i;:38::-;:42;:60;:42;:60;:::i;:::-;4313:67;;;;;4280:356;4413:15;4431:60;4474:16;;4431:38;4464:4;4431:28;4440:18;;4431:4;;:8;;:28;;;;:::i;:60::-;4413:78;;4506:15;4524:14;4533:4;;4524;:8;;:14;;;;:::i;:::-;4506:32;;4560:64;4613:10;4560:48;4603:4;4560:38;4575:22;;4560:10;:14;;:38;;;;:::i;:64::-;4553:71;;;;;;;6002:497;6164:34;:15;771:7;6164:34;:19;:34;:::i;:::-;6145:16;:53;6230:59;6264:24;771:7;6282:5;6264:24;:17;:24;:::i;6230:59::-;6209:18;:80;6325:40;:21;771:7;6325:40;:25;:40;:::i;:::-;6300:22;:65;;;6376:4;:12;;;6424:16;;6442:18;;6406:85;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;6002:497;;;;:::o;986:181:42:-;1044:7;1076:5;;;1100:6;;;;1092:46;;;;;-1:-1:-1;;;1092:46:42;;;;;;;;;;;;;;;;;;;;;;;;;;;;1158:1;-1:-1:-1;986:181:42;;;;;:::o;1879:137::-;1937:7;1964:44;1968:1;1971;1964:44;;;;;;;;;;;;;;;;;:3;:44::i;2740:471::-;2798:7;3043:6;3039:47;;-1:-1:-1;3073:1:42;3066:8;;3039:47;3110:5;;;3114:1;3110;:5;:1;3134:5;;;;;:10;3126:56;;;;-1:-1:-1;;;3126:56:42;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;4398:132;4456:7;4483:39;4487:1;4490;4483:39;;;;;;;;;;;;;;;;;:3;:39::i;2305:192::-;2391:7;2427:12;2419:6;;;;2411:29;;;;-1:-1:-1;;;2411:29:42;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;23:1:-1;8:100;33:3;30:1;27:10;8:100;;;90:11;;;84:18;71:11;;;64:39;52:2;45:10;8:100;;;12:14;2411:29:42;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;;;2463:5:42;;;2305:192::o;5018:345::-;5104:7;5206:12;5199:5;5191:28;;;;-1:-1:-1;;;5191:28:42;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;27:10:-1;;8:100;;90:11;;;84:18;71:11;;;64:39;52:2;45:10;8:100;;5191:28:42;;5230:9;5246:1;5242;:5;;;;;;;5018:345;-1:-1:-1;;;;;5018:345:42:o",
+  "source": "pragma solidity ^0.5.16;\r\n\r\nimport \"./BaseJumpRateModelV2.sol\";\r\nimport \"./InterestRateModel.sol\";\r\n\r\n\r\n/**\r\n  * @title Compound's JumpRateModel Contract V2 for V2 cTokens\r\n  * @author Arr00\r\n  * @notice Supports only for V2 cTokens\r\n  */\r\ncontract JumpRateModelV2 is InterestRateModel, BaseJumpRateModelV2  {\r\n\r\n\t/**\r\n     * @notice Calculates the current borrow rate per block\r\n     * @param cash The amount of cash in the market\r\n     * @param borrows The amount of borrows in the market\r\n     * @param reserves The amount of reserves in the market\r\n     * @return The borrow rate percentage per block as a mantissa (scaled by 1e18)\r\n     */\r\n    function getBorrowRate(uint cash, uint borrows, uint reserves) external view returns (uint) {\r\n        return getBorrowRateInternal(cash, borrows, reserves);\r\n    }\r\n\r\n    constructor(uint baseRatePerYear, uint multiplierPerYear, uint jumpMultiplierPerYear, uint kink_, address owner_) \r\n    \tBaseJumpRateModelV2(baseRatePerYear,multiplierPerYear,jumpMultiplierPerYear,kink_,owner_) public {}\r\n}\r\n",
+  "sourcePath": "F:\\7-hlf-github\\compound-play\\compound\\contracts\\JumpRateModelV2.sol",
+  "ast": {
+    "absolutePath": "project:/contracts/JumpRateModelV2.sol",
+    "exportedSymbols": {
+      "JumpRateModelV2": [
+        42034
+      ]
+    },
+    "id": 42035,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 41988,
+        "literals": [
+          "solidity",
+          "^",
+          "0.5",
+          ".16"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:24:34"
+      },
+      {
+        "absolutePath": "project:/contracts/BaseJumpRateModelV2.sol",
+        "file": "./BaseJumpRateModelV2.sol",
+        "id": 41989,
+        "nodeType": "ImportDirective",
+        "scope": 42035,
+        "sourceUnit": 287,
+        "src": "28:35:34",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "absolutePath": "project:/contracts/InterestRateModel.sol",
+        "file": "./InterestRateModel.sol",
+        "id": 41990,
+        "nodeType": "ImportDirective",
+        "scope": 42035,
+        "sourceUnit": 41758,
+        "src": "65:33:34",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "baseContracts": [
+          {
+            "arguments": null,
+            "baseName": {
+              "contractScope": null,
+              "id": 41991,
+              "name": "InterestRateModel",
+              "nodeType": "UserDefinedTypeName",
+              "referencedDeclaration": 41757,
+              "src": "268:17:34",
+              "typeDescriptions": {
+                "typeIdentifier": "t_contract$_InterestRateModel_$41757",
+                "typeString": "contract InterestRateModel"
+              }
+            },
+            "id": 41992,
+            "nodeType": "InheritanceSpecifier",
+            "src": "268:17:34"
+          },
+          {
+            "arguments": null,
+            "baseName": {
+              "contractScope": null,
+              "id": 41993,
+              "name": "BaseJumpRateModelV2",
+              "nodeType": "UserDefinedTypeName",
+              "referencedDeclaration": 286,
+              "src": "287:19:34",
+              "typeDescriptions": {
+                "typeIdentifier": "t_contract$_BaseJumpRateModelV2_$286",
+                "typeString": "contract BaseJumpRateModelV2"
+              }
+            },
+            "id": 41994,
+            "nodeType": "InheritanceSpecifier",
+            "src": "287:19:34"
+          }
+        ],
+        "contractDependencies": [
+          286,
+          41757
+        ],
+        "contractKind": "contract",
+        "documentation": "@title Compound's JumpRateModel Contract V2 for V2 cTokens\n@author Arr00\n@notice Supports only for V2 cTokens",
+        "fullyImplemented": true,
+        "id": 42034,
+        "linearizedBaseContracts": [
+          42034,
+          286,
+          41757
+        ],
+        "name": "JumpRateModelV2",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "body": {
+              "id": 42011,
+              "nodeType": "Block",
+              "src": "742:72:34",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "id": 42006,
+                        "name": "cash",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 41996,
+                        "src": "782:4:34",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      },
+                      {
+                        "argumentTypes": null,
+                        "id": 42007,
+                        "name": "borrows",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 41998,
+                        "src": "788:7:34",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      },
+                      {
+                        "argumentTypes": null,
+                        "id": 42008,
+                        "name": "reserves",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 42000,
+                        "src": "797:8:34",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        },
+                        {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        },
+                        {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      ],
+                      "id": 42005,
+                      "name": "getBorrowRateInternal",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 181,
+                      "src": "760:21:34",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_internal_view$_t_uint256_$_t_uint256_$_t_uint256_$returns$_t_uint256_$",
+                        "typeString": "function (uint256,uint256,uint256) view returns (uint256)"
+                      }
+                    },
+                    "id": 42009,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "760:46:34",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "functionReturnParameters": 42004,
+                  "id": 42010,
+                  "nodeType": "Return",
+                  "src": "753:53:34"
+                }
+              ]
+            },
+            "documentation": "@notice Calculates the current borrow rate per block\n@param cash The amount of cash in the market\n@param borrows The amount of borrows in the market\n@param reserves The amount of reserves in the market\n@return The borrow rate percentage per block as a mantissa (scaled by 1e18)",
+            "id": 42012,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "getBorrowRate",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 42001,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 41996,
+                  "name": "cash",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 42012,
+                  "src": "673:9:34",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 41995,
+                    "name": "uint",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "673:4:34",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 41998,
+                  "name": "borrows",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 42012,
+                  "src": "684:12:34",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 41997,
+                    "name": "uint",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "684:4:34",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 42000,
+                  "name": "reserves",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 42012,
+                  "src": "698:13:34",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 41999,
+                    "name": "uint",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "698:4:34",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "672:40:34"
+            },
+            "returnParameters": {
+              "id": 42004,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 42003,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 42012,
+                  "src": "736:4:34",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 42002,
+                    "name": "uint",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "736:4:34",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "735:6:34"
+            },
+            "scope": 42034,
+            "src": "650:164:34",
+            "stateMutability": "view",
+            "superFunction": 41743,
+            "visibility": "external"
+          },
+          {
+            "body": {
+              "id": 42032,
+              "nodeType": "Block",
+              "src": "1040:2:34",
+              "statements": []
+            },
+            "documentation": null,
+            "id": 42033,
+            "implemented": true,
+            "kind": "constructor",
+            "modifiers": [
+              {
+                "arguments": [
+                  {
+                    "argumentTypes": null,
+                    "id": 42025,
+                    "name": "baseRatePerYear",
+                    "nodeType": "Identifier",
+                    "overloadedDeclarations": [],
+                    "referencedDeclaration": 42014,
+                    "src": "963:15:34",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  {
+                    "argumentTypes": null,
+                    "id": 42026,
+                    "name": "multiplierPerYear",
+                    "nodeType": "Identifier",
+                    "overloadedDeclarations": [],
+                    "referencedDeclaration": 42016,
+                    "src": "979:17:34",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  {
+                    "argumentTypes": null,
+                    "id": 42027,
+                    "name": "jumpMultiplierPerYear",
+                    "nodeType": "Identifier",
+                    "overloadedDeclarations": [],
+                    "referencedDeclaration": 42018,
+                    "src": "997:21:34",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  {
+                    "argumentTypes": null,
+                    "id": 42028,
+                    "name": "kink_",
+                    "nodeType": "Identifier",
+                    "overloadedDeclarations": [],
+                    "referencedDeclaration": 42020,
+                    "src": "1019:5:34",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  {
+                    "argumentTypes": null,
+                    "id": 42029,
+                    "name": "owner_",
+                    "nodeType": "Identifier",
+                    "overloadedDeclarations": [],
+                    "referencedDeclaration": 42022,
+                    "src": "1025:6:34",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  }
+                ],
+                "id": 42030,
+                "modifierName": {
+                  "argumentTypes": null,
+                  "id": 42024,
+                  "name": "BaseJumpRateModelV2",
+                  "nodeType": "Identifier",
+                  "overloadedDeclarations": [],
+                  "referencedDeclaration": 286,
+                  "src": "943:19:34",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_type$_t_contract$_BaseJumpRateModelV2_$286_$",
+                    "typeString": "type(contract BaseJumpRateModelV2)"
+                  }
+                },
+                "nodeType": "ModifierInvocation",
+                "src": "943:89:34"
+              }
+            ],
+            "name": "",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 42023,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 42014,
+                  "name": "baseRatePerYear",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 42033,
+                  "src": "834:20:34",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 42013,
+                    "name": "uint",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "834:4:34",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 42016,
+                  "name": "multiplierPerYear",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 42033,
+                  "src": "856:22:34",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 42015,
+                    "name": "uint",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "856:4:34",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 42018,
+                  "name": "jumpMultiplierPerYear",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 42033,
+                  "src": "880:26:34",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 42017,
+                    "name": "uint",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "880:4:34",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 42020,
+                  "name": "kink_",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 42033,
+                  "src": "908:10:34",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 42019,
+                    "name": "uint",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "908:4:34",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 42022,
+                  "name": "owner_",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 42033,
+                  "src": "920:14:34",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 42021,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "920:7:34",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "833:102:34"
+            },
+            "returnParameters": {
+              "id": 42031,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1040:0:34"
+            },
+            "scope": 42034,
+            "src": "822:220:34",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "public"
+          }
+        ],
+        "scope": 42035,
+        "src": "240:805:34"
+      }
+    ],
+    "src": "0:1047:34"
+  },
+  "legacyAST": {
+    "attributes": {
+      "absolutePath": "project:/contracts/JumpRateModelV2.sol",
+      "exportedSymbols": {
+        "JumpRateModelV2": [
+          42034
+        ]
+      }
+    },
+    "children": [
+      {
+        "attributes": {
+          "literals": [
+            "solidity",
+            "^",
+            "0.5",
+            ".16"
+          ]
+        },
+        "id": 41988,
+        "name": "PragmaDirective",
+        "src": "0:24:34"
+      },
+      {
+        "attributes": {
+          "SourceUnit": 287,
+          "absolutePath": "project:/contracts/BaseJumpRateModelV2.sol",
+          "file": "./BaseJumpRateModelV2.sol",
+          "scope": 42035,
+          "symbolAliases": [
+            null
+          ],
+          "unitAlias": ""
+        },
+        "id": 41989,
+        "name": "ImportDirective",
+        "src": "28:35:34"
+      },
+      {
+        "attributes": {
+          "SourceUnit": 41758,
+          "absolutePath": "project:/contracts/InterestRateModel.sol",
+          "file": "./InterestRateModel.sol",
+          "scope": 42035,
+          "symbolAliases": [
+            null
+          ],
+          "unitAlias": ""
+        },
+        "id": 41990,
+        "name": "ImportDirective",
+        "src": "65:33:34"
+      },
+      {
+        "attributes": {
+          "contractDependencies": [
+            286,
+            41757
+          ],
+          "contractKind": "contract",
+          "documentation": "@title Compound's JumpRateModel Contract V2 for V2 cTokens\n@author Arr00\n@notice Supports only for V2 cTokens",
+          "fullyImplemented": true,
+          "linearizedBaseContracts": [
+            42034,
+            286,
+            41757
+          ],
+          "name": "JumpRateModelV2",
+          "scope": 42035
+        },
+        "children": [
+          {
+            "attributes": {
+              "arguments": null
+            },
+            "children": [
+              {
+                "attributes": {
+                  "contractScope": null,
+                  "name": "InterestRateModel",
+                  "referencedDeclaration": 41757,
+                  "type": "contract InterestRateModel"
+                },
+                "id": 41991,
+                "name": "UserDefinedTypeName",
+                "src": "268:17:34"
+              }
+            ],
+            "id": 41992,
+            "name": "InheritanceSpecifier",
+            "src": "268:17:34"
+          },
+          {
+            "attributes": {
+              "arguments": null
+            },
+            "children": [
+              {
+                "attributes": {
+                  "contractScope": null,
+                  "name": "BaseJumpRateModelV2",
+                  "referencedDeclaration": 286,
+                  "type": "contract BaseJumpRateModelV2"
+                },
+                "id": 41993,
+                "name": "UserDefinedTypeName",
+                "src": "287:19:34"
+              }
+            ],
+            "id": 41994,
+            "name": "InheritanceSpecifier",
+            "src": "287:19:34"
+          },
+          {
+            "attributes": {
+              "documentation": "@notice Calculates the current borrow rate per block\n@param cash The amount of cash in the market\n@param borrows The amount of borrows in the market\n@param reserves The amount of reserves in the market\n@return The borrow rate percentage per block as a mantissa (scaled by 1e18)",
+              "implemented": true,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
+              ],
+              "name": "getBorrowRate",
+              "scope": 42034,
+              "stateMutability": "view",
+              "superFunction": 41743,
+              "visibility": "external"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "cash",
+                      "scope": 42012,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint",
+                          "type": "uint256"
+                        },
+                        "id": 41995,
+                        "name": "ElementaryTypeName",
+                        "src": "673:4:34"
+                      }
+                    ],
+                    "id": 41996,
+                    "name": "VariableDeclaration",
+                    "src": "673:9:34"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "borrows",
+                      "scope": 42012,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint",
+                          "type": "uint256"
+                        },
+                        "id": 41997,
+                        "name": "ElementaryTypeName",
+                        "src": "684:4:34"
+                      }
+                    ],
+                    "id": 41998,
+                    "name": "VariableDeclaration",
+                    "src": "684:12:34"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "reserves",
+                      "scope": 42012,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint",
+                          "type": "uint256"
+                        },
+                        "id": 41999,
+                        "name": "ElementaryTypeName",
+                        "src": "698:4:34"
+                      }
+                    ],
+                    "id": 42000,
+                    "name": "VariableDeclaration",
+                    "src": "698:13:34"
+                  }
+                ],
+                "id": 42001,
+                "name": "ParameterList",
+                "src": "672:40:34"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "",
+                      "scope": 42012,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint",
+                          "type": "uint256"
+                        },
+                        "id": 42002,
+                        "name": "ElementaryTypeName",
+                        "src": "736:4:34"
+                      }
+                    ],
+                    "id": 42003,
+                    "name": "VariableDeclaration",
+                    "src": "736:4:34"
+                  }
+                ],
+                "id": 42004,
+                "name": "ParameterList",
+                "src": "735:6:34"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "functionReturnParameters": 42004
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "isStructConstructorCall": false,
+                          "lValueRequested": false,
+                          "names": [
+                            null
+                          ],
+                          "type": "uint256",
+                          "type_conversion": false
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": [
+                                {
+                                  "typeIdentifier": "t_uint256",
+                                  "typeString": "uint256"
+                                },
+                                {
+                                  "typeIdentifier": "t_uint256",
+                                  "typeString": "uint256"
+                                },
+                                {
+                                  "typeIdentifier": "t_uint256",
+                                  "typeString": "uint256"
+                                }
+                              ],
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 181,
+                              "type": "function (uint256,uint256,uint256) view returns (uint256)",
+                              "value": "getBorrowRateInternal"
+                            },
+                            "id": 42005,
+                            "name": "Identifier",
+                            "src": "760:21:34"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 41996,
+                              "type": "uint256",
+                              "value": "cash"
+                            },
+                            "id": 42006,
+                            "name": "Identifier",
+                            "src": "782:4:34"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 41998,
+                              "type": "uint256",
+                              "value": "borrows"
+                            },
+                            "id": 42007,
+                            "name": "Identifier",
+                            "src": "788:7:34"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 42000,
+                              "type": "uint256",
+                              "value": "reserves"
+                            },
+                            "id": 42008,
+                            "name": "Identifier",
+                            "src": "797:8:34"
+                          }
+                        ],
+                        "id": 42009,
+                        "name": "FunctionCall",
+                        "src": "760:46:34"
+                      }
+                    ],
+                    "id": 42010,
+                    "name": "Return",
+                    "src": "753:53:34"
+                  }
+                ],
+                "id": 42011,
+                "name": "Block",
+                "src": "742:72:34"
+              }
+            ],
+            "id": 42012,
+            "name": "FunctionDefinition",
+            "src": "650:164:34"
+          },
+          {
+            "attributes": {
+              "documentation": null,
+              "implemented": true,
+              "isConstructor": true,
+              "kind": "constructor",
+              "name": "",
+              "scope": 42034,
+              "stateMutability": "nonpayable",
+              "superFunction": null,
+              "visibility": "public"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "baseRatePerYear",
+                      "scope": 42033,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint",
+                          "type": "uint256"
+                        },
+                        "id": 42013,
+                        "name": "ElementaryTypeName",
+                        "src": "834:4:34"
+                      }
+                    ],
+                    "id": 42014,
+                    "name": "VariableDeclaration",
+                    "src": "834:20:34"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "multiplierPerYear",
+                      "scope": 42033,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint",
+                          "type": "uint256"
+                        },
+                        "id": 42015,
+                        "name": "ElementaryTypeName",
+                        "src": "856:4:34"
+                      }
+                    ],
+                    "id": 42016,
+                    "name": "VariableDeclaration",
+                    "src": "856:22:34"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "jumpMultiplierPerYear",
+                      "scope": 42033,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint",
+                          "type": "uint256"
+                        },
+                        "id": 42017,
+                        "name": "ElementaryTypeName",
+                        "src": "880:4:34"
+                      }
+                    ],
+                    "id": 42018,
+                    "name": "VariableDeclaration",
+                    "src": "880:26:34"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "kink_",
+                      "scope": 42033,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint",
+                          "type": "uint256"
+                        },
+                        "id": 42019,
+                        "name": "ElementaryTypeName",
+                        "src": "908:4:34"
+                      }
+                    ],
+                    "id": 42020,
+                    "name": "VariableDeclaration",
+                    "src": "908:10:34"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "owner_",
+                      "scope": 42033,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "address",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "address",
+                          "stateMutability": "nonpayable",
+                          "type": "address"
+                        },
+                        "id": 42021,
+                        "name": "ElementaryTypeName",
+                        "src": "920:7:34"
+                      }
+                    ],
+                    "id": 42022,
+                    "name": "VariableDeclaration",
+                    "src": "920:14:34"
+                  }
+                ],
+                "id": 42023,
+                "name": "ParameterList",
+                "src": "833:102:34"
+              },
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 42031,
+                "name": "ParameterList",
+                "src": "1040:0:34"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "argumentTypes": null,
+                      "overloadedDeclarations": [
+                        null
+                      ],
+                      "referencedDeclaration": 286,
+                      "type": "type(contract BaseJumpRateModelV2)",
+                      "value": "BaseJumpRateModelV2"
+                    },
+                    "id": 42024,
+                    "name": "Identifier",
+                    "src": "943:19:34"
+                  },
+                  {
+                    "attributes": {
+                      "argumentTypes": null,
+                      "overloadedDeclarations": [
+                        null
+                      ],
+                      "referencedDeclaration": 42014,
+                      "type": "uint256",
+                      "value": "baseRatePerYear"
+                    },
+                    "id": 42025,
+                    "name": "Identifier",
+                    "src": "963:15:34"
+                  },
+                  {
+                    "attributes": {
+                      "argumentTypes": null,
+                      "overloadedDeclarations": [
+                        null
+                      ],
+                      "referencedDeclaration": 42016,
+                      "type": "uint256",
+                      "value": "multiplierPerYear"
+                    },
+                    "id": 42026,
+                    "name": "Identifier",
+                    "src": "979:17:34"
+                  },
+                  {
+                    "attributes": {
+                      "argumentTypes": null,
+                      "overloadedDeclarations": [
+                        null
+                      ],
+                      "referencedDeclaration": 42018,
+                      "type": "uint256",
+                      "value": "jumpMultiplierPerYear"
+                    },
+                    "id": 42027,
+                    "name": "Identifier",
+                    "src": "997:21:34"
+                  },
+                  {
+                    "attributes": {
+                      "argumentTypes": null,
+                      "overloadedDeclarations": [
+                        null
+                      ],
+                      "referencedDeclaration": 42020,
+                      "type": "uint256",
+                      "value": "kink_"
+                    },
+                    "id": 42028,
+                    "name": "Identifier",
+                    "src": "1019:5:34"
+                  },
+                  {
+                    "attributes": {
+                      "argumentTypes": null,
+                      "overloadedDeclarations": [
+                        null
+                      ],
+                      "referencedDeclaration": 42022,
+                      "type": "address",
+                      "value": "owner_"
+                    },
+                    "id": 42029,
+                    "name": "Identifier",
+                    "src": "1025:6:34"
+                  }
+                ],
+                "id": 42030,
+                "name": "ModifierInvocation",
+                "src": "943:89:34"
+              },
+              {
+                "attributes": {
+                  "statements": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 42032,
+                "name": "Block",
+                "src": "1040:2:34"
+              }
+            ],
+            "id": 42033,
+            "name": "FunctionDefinition",
+            "src": "822:220:34"
+          }
+        ],
+        "id": 42034,
+        "name": "ContractDefinition",
+        "src": "240:805:34"
+      }
+    ],
+    "id": 42035,
+    "name": "SourceUnit",
+    "src": "0:1047:34"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.5.16+commit.9c3226ce.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.4.3",
+  "updatedAt": "2022-01-24T11:39:41.517Z",
+  "devdoc": {
+    "author": "Arr00",
+    "methods": {
+      "getBorrowRate(uint256,uint256,uint256)": {
+        "params": {
+          "borrows": "The amount of borrows in the market",
+          "cash": "The amount of cash in the market",
+          "reserves": "The amount of reserves in the market"
+        },
+        "return": "The borrow rate percentage per block as a mantissa (scaled by 1e18)"
+      },
+      "getSupplyRate(uint256,uint256,uint256,uint256)": {
+        "params": {
+          "borrows": "The amount of borrows in the market",
+          "cash": "The amount of cash in the market",
+          "reserveFactorMantissa": "The current reserve factor for the market",
+          "reserves": "The amount of reserves in the market"
+        },
+        "return": "The supply rate percentage per block as a mantissa (scaled by 1e18)"
+      },
+      "updateJumpRateModel(uint256,uint256,uint256,uint256)": {
+        "params": {
+          "baseRatePerYear": "The approximate target base APR, as a mantissa (scaled by 1e18)",
+          "jumpMultiplierPerYear": "The multiplierPerBlock after hitting a specified utilization point",
+          "kink_": "The utilization point at which the jump multiplier is applied",
+          "multiplierPerYear": "The rate of increase in interest rate wrt utilization (scaled by 1e18)"
+        }
+      },
+      "utilizationRate(uint256,uint256,uint256)": {
+        "params": {
+          "borrows": "The amount of borrows in the market",
+          "cash": "The amount of cash in the market",
+          "reserves": "The amount of reserves in the market (currently unused)"
+        },
+        "return": "The utilization rate as a mantissa between [0, 1e18]"
+      }
+    },
+    "title": "Compound's JumpRateModel Contract V2 for V2 cTokens"
+  },
+  "userdoc": {
+    "methods": {
+      "getBorrowRate(uint256,uint256,uint256)": {
+        "notice": "Calculates the current borrow rate per block"
+      },
+      "getSupplyRate(uint256,uint256,uint256,uint256)": {
+        "notice": "Calculates the current supply rate per block"
+      },
+      "updateJumpRateModel(uint256,uint256,uint256,uint256)": {
+        "notice": "Update the parameters of the interest rate model (only callable by owner, i.e. Timelock)"
+      },
+      "utilizationRate(uint256,uint256,uint256)": {
+        "notice": "Calculates the utilization rate of the market: `borrows / (cash + borrows - reserves)`"
+      }
+    },
+    "notice": "Supports only for V2 cTokens"
+  }
+}
