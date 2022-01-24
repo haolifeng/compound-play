@@ -1,11 +1,11 @@
 let underlyingConfig = {
   "THaoCoin":{
-    "scAddr":"0x30D91e76aa82FdCA1F82ef9f9aC85bb12F9422F7",
-    "blockNumber":2482
+    "scAddr":"0xef2CD82c8493f1Dd210DE0c6A47f3529A2751ad3",
+    "blockNumber":2015
   },
   "TRedCoin": {
-    "scAddr": "0x9247EbcF3729B14Ed558f552bE5EA8a4652e864a",
-    "blockNumber":2485
+    "scAddr": "0x48316CEa45E061AAb473095eF431C41333664edd",
+    "blockNumber":2019
   }
 };
 
