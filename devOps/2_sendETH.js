@@ -12,19 +12,21 @@ const BigNumber = require('bignumber.js');
 
 let fromAccount = require('../accounts/miner');
 
-//let toAccount = require('../accounts/admin');
-//let toAccount = require('../accounts/user1');
-let toAccount = require('../accounts/user2');
+
 const fromPrivkey = fromAccount.getPrivKeyBuf('123456');
 const fromAddr = fromAccount.getAccount();
 
-const toAddr = toAccount.address;
+
 
 const value = 5;
 const gas = 5000000;
 const chainId = 168;
 
-const main = async ()=>{
+
+
+
+const main = async (toAddr)=>{
+
 
     let gasPrice = await web3OnChain.getGasPrice();
     let data = '';
@@ -40,7 +42,13 @@ const main = async ()=>{
 
 
 }
-main().catch((e)=>{
+let toAccount = require('../accounts/admin');
+//let toAccount = require('../accounts/user1');
+//let toAccount = require('../accounts/user2');
+
+const toAddr = toAccount.address;
+
+main(toAddr).catch((e)=>{
     console.log('e: ',e);
     process.exit(1);
 })
