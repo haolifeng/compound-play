@@ -31,7 +31,7 @@ let config ={
         },
         softBlock:3,
         stepBlock:100,
-        syncInterval:3000, //1 second
+        syncInterval:10000, //1 second
         startBlock:500,
 
     }

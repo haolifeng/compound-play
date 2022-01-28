@@ -1,9 +1,9 @@
-let sysConfig = require('../sysConfig');
+let constConfig = require('../constConfig');
 let ethChainConfig = require('./ethChainConfig');
 let ethAgentConfig = require('./ethAgentConfig');
 let config ={
     storage:{
-        dbUrl:'mongodb://192.168.1.107:27017/liquid',
+        dbUrl:constConfig.dbUrl,
         promiseTimeout: 300 * 1000,
         chainSyncedInfo:'chainSyncedInfo',
         event:'event'

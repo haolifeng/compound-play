@@ -12,8 +12,7 @@ class ChainSync extends BaseHandler{
         console.log('this.storage is -- ', this.storage);
     }
     async init(){
-        //let agentsConfig = registry.getLiquidConfig().agents;
-        //let agentConfig = agentsConfig[this.agentName];
+
 
         this.config = registry.getLiquidConfig().agents[this.agentName].handlers[this.handlerName].config;
         this.softBlock = this.config.softBlock;

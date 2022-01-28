@@ -33,12 +33,67 @@ class Storage {
 * Borrow,
 * RepayBorrow,
 * Transfer
+*  {
+        event:{
+            type:String,
+        },
+        transactionIndex:{
+            type:Number,
+        },
+        transactionHash:{
+            type:String,
+        },
+        blockHash:{
+            type:String,
+        },
+        blockNumber: {
+            type: Number
+        },
+        timestamp: {
+            type: Number,
+            default: 0
+        },
+        MarketListedEvent:{
+            type: Array,
+            default: []
+        },
+        MarketEnteredEvent:{
+            type: Array,
+            default: []
+        },
+        MarketExitedEvent:{
+            type: Array,
+            default: []
+        },
+        BorrowEvent:{
+            type: Array,
+            default: []
+        },
+        RepayBorrowEvent:{
+            type: Array,
+            default: []
+        },
+        TransferEvent:{
+            type: Array,
+            default: []
+        },
+    },
+*
     * */
     async saveEvent(eventItem){
         let event = eventItem.event;
         switch (event) {
             case 'MarketListed':
-
+                let doc = {
+                    event:event,
+                    transactionIndex:eventItem.transactionIndex,
+                    transactionHash:eventItem.transactionHash,
+                    blockHash:eventItem.blockHash,
+                    blockNumber:eventItem.blockNumber,
+                    timestamp:new Date().getTime(),
+                    MarketListedEvent:[eventItem.returnValues]
+                }
+                this.dbAccess.addDocument(this.eventModel,doc);
                 break;
             case 'MarketEntered':
                 break;

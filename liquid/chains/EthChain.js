@@ -8,6 +8,7 @@ class EthChain extends BaseChain {
     }
     async init(){
         this.config = registry.getLiquidConfig().chains[this.chainName].config;
+        console.log('nodeUrl -- ', this.config);
         this.web3Http = new Web3Http(this.config.nodeUrl);
         this.web3 = this.web3Http.getWeb3();
         this.web3OffChain = new Web3OffChain(this.web3);
