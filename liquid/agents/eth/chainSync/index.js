@@ -8,10 +8,14 @@ class ChainSync extends BaseHandler{
     constructor(handlerName,agentName, chainName,chainType){
         super(handlerName,agentName,chainName,chainType);
         this.contractContentMap = new Map();
-        this.storeage = registry.getStorage();
+        this.storage = registry.getStorage();
+        console.log('this.storage is -- ', this.storage);
     }
     async init(){
-        this.config = registry.getLiquidConfig().agents[this.agentName].handlers[this.name].config;
+        //let agentsConfig = registry.getLiquidConfig().agents;
+        //let agentConfig = agentsConfig[this.agentName];
+
+        this.config = registry.getLiquidConfig().agents[this.agentName].handlers[this.handlerName].config;
         this.softBlock = this.config.softBlock;
         this.syncInterval = this.config.syncInterval;
         this.stepBlock = this.config.stepBlock;
@@ -57,7 +61,7 @@ class ChainSync extends BaseHandler{
     }
     async run(){
         while(1){
-            this.logger.debug('in chain Sync');
+           // this.logger.debug('in chain Sync');
             await this.scEventScan();
         }
 
@@ -93,14 +97,19 @@ class ChainSync extends BaseHandler{
         await this.storeage.saveScannedBlockNumber(this.chainType, to);
     }
     async getSyncBlockNumber(){
-        let ret = await this.storage.getSyncBlockNumber(this.chainType);
-        this.logger.debug('getSysBlockNumber : ', ret);
-        if(ret && ret.length !== 0){
-            let r = ret[0];
-            return r.scannedBlockNumber;
+        if(this.storeage){
+            let ret = await this.storage.getSyncBlockNumber(this.chainType);
+            this.logger.debug('getSysBlockNumber : ', ret);
+            if(ret && ret.length !== 0){
+                let r = ret[0];
+                return r.scannedBlockNumber;
+            }else{
+                return this.config.startBlock;
+            }
         }else{
-            return this.config.startBlock;
+            this.logger.debug('')
         }
+
 
     }
 

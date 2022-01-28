@@ -1,6 +1,6 @@
 const BaseChain = require('./BaseChain');
 let registry = require('../registry');
-let {Web3Http, Web3OffChain, Wer3OnChain} = require('../../hdevframe/web3Lib');
+let {Web3Http, Web3OffChain, Web3OnChain} = require('../../hdevframe/web3Lib');
 
 class EthChain extends BaseChain {
     constructor(chainName,chainType){

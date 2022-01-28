@@ -3,7 +3,7 @@ const underlyingConfig = require('./underlyingConfig');
 const scAddrConfig = require('./scAddrConfig');
 const liquidConfig = require('./liquid/config');
 let config = {
-    nodeUrl:'http://127.0.0.1:8545',
+    nodeUrl:'http://192.168.1.107:8545',
     abiPathConfig:abiPathConfig,
     underlyingConfig:underlyingConfig,
     scAddrConfig:scAddrConfig,

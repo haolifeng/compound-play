@@ -1,0 +1,15 @@
+{
+    "keep": {
+        "days": true,
+        "amount": 30
+    },
+    "auditLog": "log\\.263e528bd35b26b81ed05675d385d9287e594c36-audit.json",
+    "files": [
+        {
+            "date": 1643341586995,
+            "name": "log\\crossSystem.log.2022-01-28",
+            "hash": "15feb7a6c94c4cd7a71763d5544aa794"
+        }
+    ],
+    "hashType": "md5"
+}

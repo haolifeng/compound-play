@@ -3,11 +3,11 @@ const eventSchema = require('./models/eventSchema');
 const DBAccess = require('./dbAccess');
 const registry = require('../registry');
 const dbConfig = registry.getLiquidConfig().storage;
-const mongoose = require('mongoose');
+
 class Storage {
     constructor(chainDB){
         this.db = chainDB;
-        this.syncedInfoModel = this.db.model(dbConfig.ChainSyncedInfo,syncInfoSchema);
+        this.syncedInfoModel = this.db.model(dbConfig.chainSyncedInfo,syncInfoSchema);
         this.eventModel = this.db.model(dbConfig.event, eventSchema);
         this.dbAccess = new DBAccess();
 

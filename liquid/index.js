@@ -11,6 +11,7 @@ let logger = new Logger('liquidRobot',liquidConfig.log.logfile,liquidConfig.log.
 registry.setLogger(logger);
 
 let storage = require('./db/index');
+
 registry.setStorage(storage);
 let App = require('./app');
 

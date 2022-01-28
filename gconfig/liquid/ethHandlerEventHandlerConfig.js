@@ -1,3 +1,4 @@
+const EventHandler = require('../../liquid/agents/eth/eventHandler/index');
 let config ={
     component:EventHandler,
     config:{
