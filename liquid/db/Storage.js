@@ -22,6 +22,10 @@ class Storage {
         return ret;
 
     }
+    async getEvents(status){
+        let ret = await this.dbAccess.syncFindDocument(this.eventModel,{status:status});
+        return ret;
+    }
     async getSyncBlockNumber(chainType){
         let ret = await this.dbAccess.syncFindDocument(this.syncedInfoModel,{chainType:chainType});
         return ret;

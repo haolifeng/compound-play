@@ -54,6 +54,10 @@ const eventSchema = new Schema(
             type: Array,
             default: []
         },
+        status:{
+            stype:String,
+            default:'init', // init, processing, finish
+        }
     },
     {
         collection: 'event'

@@ -9,7 +9,8 @@ let config ={
             'Borrow',
             'RepayBorrow',
             'Transfer'
-        ]
+        ],
+        interval:3000,
 
     }
 }
