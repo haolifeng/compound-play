@@ -1,11 +1,14 @@
 const BaseHandler = require('../../BaseHandler');
 const registry = require('../../../registry');
 let { sleep } = require('../../../utils/lib');
+const StatusSystem = require('./statusSystem/StatusSystem');
 class EventHandler extends BaseHandler{
     constructor(handlerName,agentName, chainName,chainType){
         super(handlerName,agentName,chainName,chainType);
         this.storage = registry.getStorage();
         this.config = registry.getLiquidConfig().agents[this.agentName].handlers[this.handlerName].config;
+        this.chain = registry.getChain(this.chainName);
+        this.statusSystem = new StatusSystem(this.chain,this.storage);
     }
     async init(){
         this.logger.debug('in event handler --- init');
