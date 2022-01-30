@@ -20,6 +20,9 @@ class AccountStatus extends BaseStatus {
 
 
     }
+    aysnc calculateAndUpdate(){
+        //here calcluate -- get liquid status 
+    }
 }
 
 module.exports = AccountStatus;
